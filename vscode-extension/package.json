@@ -1,0 +1,139 @@
+{
+  "name": "sentinelx",
+  "displayName": "SentinelX Security Analyzer",
+  "description": "Real-time C/C++ security vulnerability detection with advanced integer overflow detection and taint analysis",
+  "version": "1.5.0",
+  "publisher": "sentinelx",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sentinelx/vscode-extension"
+  },
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Linters",
+    "Programming Languages"
+  ],
+  "keywords": [
+    "security",
+    "vulnerability",
+    "buffer overflow",
+    "integer overflow",
+    "taint analysis",
+    "static analysis",
+    "c",
+    "c++",
+    "exploit detection"
+  ],
+  "activationEvents": [
+    "onLanguage:c",
+    "onLanguage:cpp"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "SentinelX",
+      "properties": {
+        "sentinelx.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable SentinelX security analysis"
+        },
+        "sentinelx.executablePath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to SentinelX executable (leave empty to use from PATH)"
+        },
+        "sentinelx.analyzeOnSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Run analysis when file is saved"
+        },
+        "sentinelx.analyzeOnType": {
+          "type": "boolean",
+          "default": false,
+          "description": "Run analysis while typing (may impact performance)"
+        },
+        "sentinelx.minConfidence": {
+          "type": "string",
+          "enum": ["LOW", "MEDIUM", "HIGH", "CERTAIN"],
+          "default": "MEDIUM",
+          "description": "Minimum confidence level to show findings"
+        },
+        "sentinelx.showInfoSeverity": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show INFO severity findings"
+        },
+        "sentinelx.onlyReachable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Only show vulnerabilities in functions reachable from main/entry points (disable to analyze all functions)"
+        },
+        "sentinelx.showUnusedWarnings": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show warnings for unused functions with vulnerabilities (requires onlyReachable)"
+        },
+        "sentinelx.debounceTime": {
+          "type": "number",
+          "default": 500,
+          "description": "Debounce time in milliseconds for on-type analysis"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "sentinelx.analyzeCurrentFile",
+        "title": "SentinelX: Analyze Current File"
+      },
+      {
+        "command": "sentinelx.analyzeWorkspace",
+        "title": "SentinelX: Analyze Whole Workspace"
+      },
+      {
+        "command": "sentinelx.clearDiagnostics",
+        "title": "SentinelX: Clear All Diagnostics"
+      }
+    ],
+    "problemMatchers": [
+      {
+        "name": "sentinelx",
+        "owner": "sentinelx",
+        "fileLocation": "absolute",
+        "pattern": [
+          {
+            "regexp": "^\\[SOURCE\\]\\[(\\w+)\\]\\[Confidence: (\\w+)\\] (\\S+)$",
+            "severity": 1,
+            "message": 3
+          },
+          {
+            "regexp": "^\\s+at (.+):(\\d+) in function '(.+)'$",
+            "file": 1,
+            "line": 2
+          }
+        ]
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "lint": "eslint src --ext ts",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.80.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.45.0",
+    "typescript": "^5.1.6",
+    "@vscode/vsce": "^2.19.0"
+  },
+  "dependencies": {}
+}

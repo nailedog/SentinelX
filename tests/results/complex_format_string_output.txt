@@ -1,0 +1,44 @@
+[SOURCE][CRITICAL][Confidence: HIGH] SRC_FORMAT_STRING_VULN
+  at /Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/false_negatives/complex_format_string.c:15 in function 'indirect_format_vuln'
+  Source context:
+    13 | 
+    14 |     // Vulnerable but analyzer might miss the indirection
+    15 >     printf(format);
+    16 | }
+    17 | 
+  Format string vulnerability: 'printf' called with non-literal first argument. Attacker-controlled format string can lead to arbitrary code execution.
+  Recommendation: Always use a string literal for the format argument: printf("%s", user_input) instead of printf(user_input).
+
+[SOURCE][CRITICAL][Confidence: HIGH] SRC_FORMAT_STRING_VULN
+  at /Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/false_negatives/complex_format_string.c:24 in function 'wrapper_printf'
+  Source context:
+    22 | 
+    23 |     // If fmt comes from user, this is vulnerable
+    24 >     vprintf(fmt, args);
+    25 | 
+    26 |     va_end(args);
+  Format string vulnerability: 'vprintf' called with non-literal first argument. Attacker-controlled format string can lead to arbitrary code execution.
+  Recommendation: Always use a string literal for the format argument: vprintf("%s", user_input) instead of vprintf(user_input).
+
+[SOURCE][CRITICAL][Confidence: HIGH] SRC_FORMAT_STRING_VULN
+  at /Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/false_negatives/complex_format_string.c:37 in function 'array_format_vuln'
+  Source context:
+    35 | void array_format_vuln(char** format_array, int index) {
+    36 |     // If format_array[index] is user-controlled
+    37 >     printf(format_array[index]);
+    38 | }
+    39 | 
+  Format string vulnerability: 'printf' called with non-literal first argument. Attacker-controlled format string can lead to arbitrary code execution.
+  Recommendation: Always use a string literal for the format argument: printf("%s", user_input) instead of printf(user_input).
+
+[SOURCE][CRITICAL][Confidence: HIGH] SRC_FORMAT_STRING_VULN
+  at /Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/false_negatives/complex_format_string.c:48 in function 'struct_format_vuln'
+  Source context:
+    46 | void struct_format_vuln(struct config* cfg) {
+    47 |     // If cfg->format is user-controlled
+    48 >     printf(cfg->format, cfg->value);
+    49 | }
+    50 | 
+  Format string vulnerability: 'printf' called with non-literal first argument. Attacker-controlled format string can lead to arbitrary code execution.
+  Recommendation: Always use a string literal for the format argument: printf("%s", user_input) instead of printf(user_input).
+

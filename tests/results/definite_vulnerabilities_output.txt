@@ -1,0 +1,110 @@
+[SOURCE][CRITICAL][Confidence: CERTAIN] SRC_UNSAFE_CALL_gets
+  at /Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/true_positives/definite_vulnerabilities.c:13 in function 'gets_vulnerability'
+  Source context:
+    11 | void gets_vulnerability() {
+    12 |     char buffer[100];
+    13 >     gets(buffer);  // Should be CERTAIN
+    14 | }
+    15 | 
+  Call to potentially unsafe function 'gets' without explicit bounds.
+  Recommendation: Prefer bounded alternatives (e.g. strncpy, strlcpy, snprintf) and ensure buffer size checks.
+
+[SOURCE][CRITICAL][Confidence: HIGH] SRC_FORMAT_STRING_VULN
+  at /Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/true_positives/definite_vulnerabilities.c:18 in function 'format_string_vulnerability'
+  Source context:
+    16 | // HIGH: Direct format string vulnerability
+    17 | void format_string_vulnerability(char* user_input) {
+    18 >     printf(user_input);  // Should be HIGH/CRITICAL
+    19 | }
+    20 | 
+  Format string vulnerability: 'printf' called with non-literal first argument. Attacker-controlled format string can lead to arbitrary code execution.
+  Recommendation: Always use a string literal for the format argument: printf("%s", user_input) instead of printf(user_input).
+
+[SOURCE][HIGH][Confidence: HIGH] SRC_UNSAFE_CALL_strcpy
+  at /Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/true_positives/definite_vulnerabilities.c:24 in function 'strcpy_vulnerability'
+  Source context:
+    22 | void strcpy_vulnerability(char* user_input) {
+    23 |     char dest[20];
+    24 >     strcpy(dest, user_input);  // Should be HIGH
+    25 | }
+    26 | 
+  Call to potentially unsafe function 'strcpy' without explicit bounds.
+  Recommendation: Prefer bounded alternatives (e.g. strncpy, strlcpy, snprintf) and ensure buffer size checks.
+
+[SOURCE][HIGH][Confidence: HIGH] SRC_UNSAFE_CALL_strcat
+  at /Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/true_positives/definite_vulnerabilities.c:30 in function 'strcat_vulnerability'
+  Source context:
+    28 | void strcat_vulnerability(char* user_input) {
+    29 |     char dest[20] = "Hello ";
+    30 >     strcat(dest, user_input);  // Should be HIGH
+    31 | }
+    32 | 
+  Call to potentially unsafe function 'strcat' without explicit bounds.
+  Recommendation: Prefer bounded alternatives (e.g. strncpy, strlcpy, snprintf) and ensure buffer size checks.
+
+[SOURCE][HIGH][Confidence: HIGH] SRC_SCANF_UNBOUNDED
+  at /Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/true_positives/definite_vulnerabilities.c:36 in function 'scanf_vulnerability'
+  Source context:
+    34 | void scanf_vulnerability() {
+    35 |     char buffer[50];
+    36 >     scanf("%s", buffer);  // Should be HIGH
+    37 | }
+    38 | 
+  Use of 'scanf' with '%s' format specifier without width may lead to buffer overflow.
+  Recommendation: Specify maximum field width in the format string or replace with safer input handling.
+
+[SOURCE][HIGH][Confidence: HIGH] SRC_UNSAFE_CALL_sprintf
+  at /Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/true_positives/definite_vulnerabilities.c:42 in function 'sprintf_vulnerability'
+  Source context:
+    40 | void sprintf_vulnerability(char* user_input) {
+    41 |     char buffer[50];
+    42 >     sprintf(buffer, "Input: %s", user_input);  // Should be HIGH
+    43 | }
+    44 | 
+  Call to potentially unsafe function 'sprintf' without explicit bounds.
+  Recommendation: Prefer bounded alternatives (e.g. strncpy, strlcpy, snprintf) and ensure buffer size checks.
+
+[SOURCE][HIGH][Confidence: HIGH] SRC_UNSAFE_CALL_vsprintf
+  at /Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/true_positives/definite_vulnerabilities.c:51 in function 'vsprintf_vulnerability'
+  Source context:
+    49 |     va_list args;
+    50 |     va_start(args, fmt);
+    51 >     vsprintf(buffer, fmt, args);  // Should be HIGH
+    52 |     va_end(args);
+    53 | }
+  Call to potentially unsafe function 'vsprintf' without explicit bounds.
+  Recommendation: Prefer bounded alternatives (e.g. strncpy, strlcpy, snprintf) and ensure buffer size checks.
+
+[SOURCE][CRITICAL][Confidence: MEDIUM] SRC_ALLOCATION_OVERFLOW
+  at /Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/true_positives/definite_vulnerabilities.c:58 in function 'allocation_overflow'
+  Source context:
+    56 | void allocation_overflow(int count) {
+    57 |     // Should detect potential integer overflow
+    58 >     char* buf = malloc(count * 1024);  // Should be flagged
+    59 |     free(buf);
+    60 | }
+  Memory allocation with size calculation may lead to integer overflow.
+  Recommendation: Use overflow-checked multiplication or use calloc for multiplication cases.
+
+[SOURCE][HIGH][Confidence: MEDIUM] SRC_ARITHMETIC_OVERFLOW
+  at /Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/true_positives/definite_vulnerabilities.c:64 in function 'arithmetic_overflow'
+  Source context:
+    62 | // HIGH: Arithmetic overflow
+    63 | void arithmetic_overflow(int a, int b) {
+    64 >     int result = a * b;  // Should be flagged
+    65 |     printf("Result: %d\n", result);
+    66 | }
+  Multiplication operation on 'result' without overflow check.
+  Recommendation: Use overflow-checked arithmetic operations (__builtin_add_overflow, __builtin_sub_overflow, __builtin_mul_overflow, or SafeInt library).
+
+[SOURCE][CRITICAL][Confidence: MEDIUM] SRC_INTEGER_OVERFLOW_atoi
+  at /Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/true_positives/definite_vulnerabilities.c:77 in function 'main'
+  Source context:
+    75 |         sprintf_vulnerability(argv[1]);
+    76 |         vsprintf_vulnerability("%s", argv[1]);
+    77 >         allocation_overflow(atoi(argv[1]));
+    78 |         arithmetic_overflow(1000000, 1000000);
+    79 |     }
+  Use of 'atoi' without proper error checking may lead to integer overflow.
+  Recommendation: Use safe alternatives with error checking (strtol with errno) or use safe integer conversion libraries.
+

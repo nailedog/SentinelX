@@ -1,0 +1,116 @@
+{
+  "files_analyzed": 1,
+  "issues_found": true,
+  "findings": [
+    {
+      "file": "/Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/true_positives/definite_vulnerabilities.c",
+      "line": 13,
+      "function": "gets_vulnerability",
+      "buffer": "",
+      "kind": "SRC_UNSAFE_CALL_gets",
+      "severity": "CRITICAL",
+      "confidence": "CERTAIN",
+      "message": "Call to potentially unsafe function 'gets' without explicit bounds.",
+      "return_address": ""
+    },
+    {
+      "file": "/Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/true_positives/definite_vulnerabilities.c",
+      "line": 18,
+      "function": "format_string_vulnerability",
+      "buffer": "",
+      "kind": "SRC_FORMAT_STRING_VULN",
+      "severity": "CRITICAL",
+      "confidence": "HIGH",
+      "message": "Format string vulnerability: 'printf' called with non-literal first argument. Attacker-controlled format string can lead to arbitrary code execution.",
+      "return_address": ""
+    },
+    {
+      "file": "/Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/true_positives/definite_vulnerabilities.c",
+      "line": 24,
+      "function": "strcpy_vulnerability",
+      "buffer": "",
+      "kind": "SRC_UNSAFE_CALL_strcpy",
+      "severity": "HIGH",
+      "confidence": "HIGH",
+      "message": "Call to potentially unsafe function 'strcpy' without explicit bounds.",
+      "return_address": ""
+    },
+    {
+      "file": "/Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/true_positives/definite_vulnerabilities.c",
+      "line": 30,
+      "function": "strcat_vulnerability",
+      "buffer": "",
+      "kind": "SRC_UNSAFE_CALL_strcat",
+      "severity": "HIGH",
+      "confidence": "HIGH",
+      "message": "Call to potentially unsafe function 'strcat' without explicit bounds.",
+      "return_address": ""
+    },
+    {
+      "file": "/Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/true_positives/definite_vulnerabilities.c",
+      "line": 36,
+      "function": "scanf_vulnerability",
+      "buffer": "",
+      "kind": "SRC_SCANF_UNBOUNDED",
+      "severity": "HIGH",
+      "confidence": "HIGH",
+      "message": "Use of 'scanf' with '%s' format specifier without width may lead to buffer overflow.",
+      "return_address": ""
+    },
+    {
+      "file": "/Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/true_positives/definite_vulnerabilities.c",
+      "line": 42,
+      "function": "sprintf_vulnerability",
+      "buffer": "",
+      "kind": "SRC_UNSAFE_CALL_sprintf",
+      "severity": "HIGH",
+      "confidence": "HIGH",
+      "message": "Call to potentially unsafe function 'sprintf' without explicit bounds.",
+      "return_address": ""
+    },
+    {
+      "file": "/Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/true_positives/definite_vulnerabilities.c",
+      "line": 51,
+      "function": "vsprintf_vulnerability",
+      "buffer": "",
+      "kind": "SRC_UNSAFE_CALL_vsprintf",
+      "severity": "HIGH",
+      "confidence": "HIGH",
+      "message": "Call to potentially unsafe function 'vsprintf' without explicit bounds.",
+      "return_address": ""
+    },
+    {
+      "file": "/Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/true_positives/definite_vulnerabilities.c",
+      "line": 58,
+      "function": "allocation_overflow",
+      "buffer": "",
+      "kind": "SRC_ALLOCATION_OVERFLOW",
+      "severity": "CRITICAL",
+      "confidence": "MEDIUM",
+      "message": "Memory allocation with size calculation may lead to integer overflow.",
+      "return_address": ""
+    },
+    {
+      "file": "/Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/true_positives/definite_vulnerabilities.c",
+      "line": 64,
+      "function": "arithmetic_overflow",
+      "buffer": "",
+      "kind": "SRC_ARITHMETIC_OVERFLOW",
+      "severity": "HIGH",
+      "confidence": "MEDIUM",
+      "message": "Multiplication operation on 'result' without overflow check.",
+      "return_address": ""
+    },
+    {
+      "file": "/Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/true_positives/definite_vulnerabilities.c",
+      "line": 77,
+      "function": "main",
+      "buffer": "",
+      "kind": "SRC_INTEGER_OVERFLOW_atoi",
+      "severity": "CRITICAL",
+      "confidence": "MEDIUM",
+      "message": "Use of 'atoi' without proper error checking may lead to integer overflow.",
+      "return_address": ""
+    }
+  ]
+}

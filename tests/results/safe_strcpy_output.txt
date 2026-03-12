@@ -1,0 +1,22 @@
+[SOURCE][HIGH][Confidence: HIGH] SRC_UNSAFE_CALL_strcpy
+  at /Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/false_positives/safe_strcpy.c:15 in function 'safe_strcpy_example'
+  Source context:
+    13 | 
+    14 |     // This is safe because we know the source is smaller than dest
+    15 >     strcpy(dest, safe_source);
+    16 | }
+    17 | 
+  Call to potentially unsafe function 'strcpy' without explicit bounds.
+  Recommendation: Prefer bounded alternatives (e.g. strncpy, strlcpy, snprintf) and ensure buffer size checks.
+
+[SOURCE][HIGH][Confidence: HIGH] SRC_UNSAFE_CALL_strcpy
+  at /Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/false_positives/safe_strcpy.c:22 in function 'safe_strcpy_literal'
+  Source context:
+    20 | 
+    21 |     // Safe: literal string is known at compile time
+    22 >     strcpy(buffer, "Safe literal string");
+    23 | }
+    24 | 
+  Call to potentially unsafe function 'strcpy' without explicit bounds.
+  Recommendation: Prefer bounded alternatives (e.g. strncpy, strlcpy, snprintf) and ensure buffer size checks.
+

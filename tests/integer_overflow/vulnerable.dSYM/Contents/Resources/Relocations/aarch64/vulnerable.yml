@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/gen/Desktop/Projects/SentinelX/V-1.5/tests/integer_overflow/vulnerable'
+relocations:     []
+...

@@ -1,0 +1,28 @@
+{
+  "files_analyzed": 1,
+  "issues_found": true,
+  "findings": [
+    {
+      "file": "/Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/false_positives/safe_strcpy.c",
+      "line": 15,
+      "function": "safe_strcpy_example",
+      "buffer": "",
+      "kind": "SRC_UNSAFE_CALL_strcpy",
+      "severity": "HIGH",
+      "confidence": "HIGH",
+      "message": "Call to potentially unsafe function 'strcpy' without explicit bounds.",
+      "return_address": ""
+    },
+    {
+      "file": "/Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/false_positives/safe_strcpy.c",
+      "line": 22,
+      "function": "safe_strcpy_literal",
+      "buffer": "",
+      "kind": "SRC_UNSAFE_CALL_strcpy",
+      "severity": "HIGH",
+      "confidence": "HIGH",
+      "message": "Call to potentially unsafe function 'strcpy' without explicit bounds.",
+      "return_address": ""
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+[SOURCE][HIGH][Confidence: HIGH] SRC_UNSAFE_CALL_strcpy
+  at /Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/false_negatives/obfuscated_overflow.c:48 in function 'strcpy'
+  Source context:
+    46 | 
+    47 | // Hidden in macro
+    48 > #define UNSAFE_COPY(dst, src) strcpy(dst, src)
+    49 | 
+    50 | void macro_hidden_vuln(const char* input) {
+  Call to potentially unsafe function 'strcpy' without explicit bounds.
+  Recommendation: Prefer bounded alternatives (e.g. strncpy, strlcpy, snprintf) and ensure buffer size checks.
+
+[SOURCE][HIGH][Confidence: HIGH] SRC_UNSAFE_CALL_strcpy
+  at /Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/false_negatives/obfuscated_overflow.c:61 in function 'chained_overflow'
+  Source context:
+    59 | 
+    60 |     // First overflow
+    61 >     strcpy(temp, input);
+    62 |     // Second operation
+    63 |     strcat(final, temp);
+  Call to potentially unsafe function 'strcpy' without explicit bounds.
+  Recommendation: Prefer bounded alternatives (e.g. strncpy, strlcpy, snprintf) and ensure buffer size checks.
+
+[SOURCE][HIGH][Confidence: HIGH] SRC_UNSAFE_CALL_strcat
+  at /Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/false_negatives/obfuscated_overflow.c:63 in function 'chained_overflow'
+  Source context:
+    61 |     strcpy(temp, input);
+    62 |     // Second operation
+    63 >     strcat(final, temp);
+    64 | }
+    65 | 
+  Call to potentially unsafe function 'strcat' without explicit bounds.
+  Recommendation: Prefer bounded alternatives (e.g. strncpy, strlcpy, snprintf) and ensure buffer size checks.
+

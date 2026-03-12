@@ -1,0 +1,50 @@
+{
+  "files_analyzed": 1,
+  "issues_found": true,
+  "findings": [
+    {
+      "file": "/Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/false_negatives/complex_format_string.c",
+      "line": 15,
+      "function": "indirect_format_vuln",
+      "buffer": "",
+      "kind": "SRC_FORMAT_STRING_VULN",
+      "severity": "CRITICAL",
+      "confidence": "HIGH",
+      "message": "Format string vulnerability: 'printf' called with non-literal first argument. Attacker-controlled format string can lead to arbitrary code execution.",
+      "return_address": ""
+    },
+    {
+      "file": "/Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/false_negatives/complex_format_string.c",
+      "line": 24,
+      "function": "wrapper_printf",
+      "buffer": "",
+      "kind": "SRC_FORMAT_STRING_VULN",
+      "severity": "CRITICAL",
+      "confidence": "HIGH",
+      "message": "Format string vulnerability: 'vprintf' called with non-literal first argument. Attacker-controlled format string can lead to arbitrary code execution.",
+      "return_address": ""
+    },
+    {
+      "file": "/Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/false_negatives/complex_format_string.c",
+      "line": 37,
+      "function": "array_format_vuln",
+      "buffer": "",
+      "kind": "SRC_FORMAT_STRING_VULN",
+      "severity": "CRITICAL",
+      "confidence": "HIGH",
+      "message": "Format string vulnerability: 'printf' called with non-literal first argument. Attacker-controlled format string can lead to arbitrary code execution.",
+      "return_address": ""
+    },
+    {
+      "file": "/Users/gen/Desktop/Projects/SentinelX/V-1.0/tests/false_negatives/complex_format_string.c",
+      "line": 48,
+      "function": "struct_format_vuln",
+      "buffer": "",
+      "kind": "SRC_FORMAT_STRING_VULN",
+      "severity": "CRITICAL",
+      "confidence": "HIGH",
+      "message": "Format string vulnerability: 'printf' called with non-literal first argument. Attacker-controlled format string can lead to arbitrary code execution.",
+      "return_address": ""
+    }
+  ]
+}

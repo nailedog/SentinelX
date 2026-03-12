@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  sentinelx:
+    platform: linux/amd64
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      platforms:
+        - linux/amd64
+    container_name: sentinelx-test
+    # Привилегированный режим для отключения ASLR
+    privileged: true
+    # Отключаем security-opt для эксплойтов
+    security_opt:
+      - seccomp:unconfined
+    # Монтируем текущую директорию для удобства
+    volumes:
+      - ..:/sentinelx
+    # Рабочая директория
+    working_dir: /sentinelx
+    # Интерактивный режим
+    stdin_open: true
+    tty: true
+    # Запускаем bash по умолчанию
+    command: /bin/bash

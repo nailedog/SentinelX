@@ -1,0 +1,51 @@
+# Build artifacts
+build/
+cmake-build-*/
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+
+# IDE / Editor
+.idea/
+.vscode/
+*.iml
+*.suo
+*.user
+.DS_Store
+Thumbs.db
+
+# Claude AI settings
+.claude/
+
+# VSCode Extension build artifacts
+vscode-extension/node_modules/
+vscode-extension/out/
+vscode-extension/*.vsix
+
+# Test binaries (compiled)
+tests/buffer_overflow/safe
+tests/buffer_overflow/vulnerable
+tests/buffer_overflow/vuln64
+tests/buffer_overflow/auth_overflow
+tests/command_injection/vulnerable
+tests/format_string/vulnerable
+tests/integer_overflow/vulnerable
+tests/race_condition/safe
+tests/use_after_free/vulnerable
+tests/realistic_vuln/simple_auth
+
+# Generated exploits
+exploits/
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+install_manifest.txt
+
+# Logs
+*.log
